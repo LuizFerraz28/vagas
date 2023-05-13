@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/aaa', function () {
     return view('welcome');
 });
+
+Route::get('emp','EmpresaController@index')->name('empresa.index');
+

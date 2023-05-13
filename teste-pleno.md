@@ -1,8 +1,15 @@
 [![](https://meeventos.com.br/images/logo.png)](https://meeventos.com.br)
 
-# Teste para candidatos à vaga de Desenvolvedor PHP Pleno
+# Comandos
 
-Olá, candidato! Neste teste, iremos avaliar seu conhecimento geral e habilidade de desenvolvimento em tempo hábil. A seguir, explicaremos tudo o que você precisará saber.
+Rodar os seguintes comando para popular o banco de dados.
+1) Criação das tabelas:
+ - php artisan migrate --path=database/migrations/2023_05_12_021258_create-usuarios.php
+ - php artisan migrate --path=database/migrations/2023_05_12_020833_create-empresas.php
+ - php artisan migrate --path=database/migrations/2023_05_12_021249_create-categorias.php
+
+2)popular tabelas:
+ - php artisan db:seed
 
 ## Instruções
 

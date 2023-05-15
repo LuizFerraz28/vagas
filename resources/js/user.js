@@ -5,25 +5,24 @@ $(document).ready(function () {
     $.ajaxSetup({
         headers: { "X-CSRF-Token": $("meta[name=csrf_token]").attr("content") },
     });
-    var table = $("#empresa-datatable").DataTable({
+    var table = $("#usuario-datatable").DataTable({
         processing: true,
         serverSide: true,
         select: true,
-        ajax: `/emp`,
+        ajax: `/user`,
         columns: [
             { data: "nome", name: "nome" },
-            { data: "usuario_id", name: "usuario_id" },
         ],
         buttons: [
             {
                 name: "novo",
-                text: "Nova Empresa",
-                id: "btn-empresa",
-                className: "btn btn-success btn-criar-empresa",
+                text: "Novo Usuario",
+                id: "btn-user",
+                className: "btn btn-success btn-criar-usuario",
             },
             {
                 name: "editar",
-                text: "Editar Empresa",
+                text: "Editar Usuario",
                 className: "btn btn-primary",
                 action: async function (e, dt, node, config) {
                     $.ajax({
@@ -33,7 +32,7 @@ $(document).ready(function () {
                                 "content"
                             ),
                         },
-                        url: `/emp/edit`,
+                        url: `/user/edit`,
                         data: {
                             id: this.row({ selected: true }).data().id,
                         },
@@ -41,13 +40,12 @@ $(document).ready(function () {
                             console.log(data);
                             $(".modal-title").text(data.nome);
                             $("#action_button").val("Edit");
-                            $("#empresa_form").attr(
+                            $("#usuario_form").attr(
                                 "action",
-                                "emp/update/" + data.id
+                                "user/update/" + data.id
                             );
                             $("#form_result").html("");
                             $("#nome").val(data.nome);
-                            $("#usuario_id").val(data.usuario_id);
                             $("#formModal").modal("show");
                         },
                     }).then(() => dt.ajax.reload());
@@ -55,7 +53,7 @@ $(document).ready(function () {
             },
             {
                 name: "excluir",
-                text: "Excluir Empresa",
+                text: "Excluir Usuario",
                 className: "btn btn-danger",
                 action: async function (e, dt, node, config) {
                     $.ajax({
@@ -65,7 +63,7 @@ $(document).ready(function () {
                                 "content"
                             ),
                         },
-                        url: `/emp/delete`,
+                        url: `/user/delete`,
                         data: {
                             id: this.row({ selected: true }).data().id,
                         },
@@ -75,14 +73,14 @@ $(document).ready(function () {
         ],
     });
 
-    $(".btn-criar-empresa").on("click", function () {
-        $(".modal-title").text("Nova empresa");
+    $(".btn-criar-usuario").on("click", function () {
+        $(".modal-title").text("Novo Usuario");
         $("#action_button").val("Add");
         $("action").val("Add");
         $("#form_result").html("");
-        $("#empresa_form").attr(
+        $("#usuario_form").attr(
             "action",
-            "emp/store"
+            "user/store"
         );
         $("#formModal").modal("show");
     });
